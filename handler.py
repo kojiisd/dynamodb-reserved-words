@@ -12,5 +12,11 @@ def run(event, context):
     
     response = requests.get(URL)
     soup = BeautifulSoup(response.content, "html.parser")
+    
+    result_tmp = soup.find("code")
+    if result_tmp == None:
+        return "No parsing target"
+    
+    result = result_tmp.string
 
-    return soup.find("code").string
+    return result.split('\n');
